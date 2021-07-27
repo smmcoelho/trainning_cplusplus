@@ -12,6 +12,9 @@
 # Mono auto generated files
 mono_crash.*
 
+#packages
+[Pp]ackages/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
