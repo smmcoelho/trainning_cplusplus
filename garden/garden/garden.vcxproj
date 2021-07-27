@@ -39,6 +39,7 @@
     <ClInclude Include="GardenDetails.h" />
     <ClInclude Include="GardenMore.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Price.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +55,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="GardenTest.cpp" />
+    <ClCompile Include="Price.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

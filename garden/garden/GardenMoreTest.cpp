@@ -84,3 +84,16 @@ TEST(TestGardenDetailsAddFlowerThrowException2, GardenMoreTest) {
 
 	ASSERT_THROW(garden.AddFlower(f), std::runtime_error);
 }
+
+
+//TEST(TestGardenDetailsCalcPrice, GardenMoreTest) {
+//	GardenDetails gDetails(1.0, 2.0);
+//	GardenMore garden(gDetails);
+//
+//	garden.AddFlower(Flower("rose", "red"));
+//	garden.AddFlower(Flower("rose", "white"));
+//	
+//	double price = garden.GetPrice();
+//
+//	EXPECT_EQ(price, 1.0);
+//}

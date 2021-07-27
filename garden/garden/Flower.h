@@ -13,11 +13,15 @@ public:
 	Flower& operator=(Flower&& other) noexcept; // move assignment
 
 	std::string GetName() const;
-	std::string GetNamecolor() const;
+	std::string GetColor() const;
+
+	//double GetPrice() const;
 
 private:
 	std::string name;
 	std::string color;
+
+	//double price = 1.0;
 };
 
 

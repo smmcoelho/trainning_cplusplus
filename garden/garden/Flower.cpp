@@ -24,6 +24,7 @@ Flower::Flower(const Flower& other)
 
 Flower::Flower(Flower&& other) noexcept
 {
+	//std::cout << "Flower move constructor called" << std::endl;
 	*this = std::move(other);
 }
 
@@ -39,6 +40,7 @@ Flower& Flower::operator=(const Flower& other)
 
 Flower& Flower::operator=(Flower&& other) noexcept
 {
+	//std::cout << "Flower move assignement called" << std::endl;
 	if (this != &other)
 	{
 		name = std::move(other.name);
@@ -52,7 +54,12 @@ std::string Flower::GetName() const
 	return name;
 }
 
-std::string Flower::GetNamecolor() const
+std::string Flower::GetColor() const
 {
 	return color;
 }
+
+//double Flower::GetPrice() const
+//{
+//	return price;
+//}
