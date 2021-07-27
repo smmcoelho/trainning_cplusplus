@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "GardenMore.h"
+#include <stdexcept>
 
 
 GardenMore::GardenMore(const GardenDetails& garden)
@@ -18,7 +19,7 @@ void GardenMore::AddFlower(const Flower& flower)
 	{
 		throw std::runtime_error("garden size is not valid");
 	}
-	flowers.push_back(std::make_shared<Flower>(flower));
+	flowers.push_back(std::move(flower));
 }
 bool GardenMore::DoesHaveFlowers()
 {

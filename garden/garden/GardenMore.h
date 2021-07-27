@@ -29,5 +29,5 @@ private:
 	GardenDetails details;
 
 	//variables for flower details
-	std::vector<std::shared_ptr<Flower>> flowers;
+	std::vector<Flower> flowers;
 };
