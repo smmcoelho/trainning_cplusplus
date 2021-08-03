@@ -38,6 +38,7 @@
     <ClInclude Include="Garden.h" />
     <ClInclude Include="GardenDetails.h" />
     <ClInclude Include="GardenMore.h" />
+    <ClInclude Include="GardenStruct.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Price.h" />
     <ClInclude Include="resource.h" />
@@ -48,6 +49,7 @@
     <ClCompile Include="GardenDetails.cpp" />
     <ClCompile Include="GardenMore.cpp" />
     <ClCompile Include="GardenMoreTest.cpp" />
+    <ClCompile Include="GardenStruct.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -56,6 +58,8 @@
     </ClCompile>
     <ClCompile Include="GardenTest.cpp" />
     <ClCompile Include="Price.cpp" />
+    <ClCompile Include="DummyTest.cpp" />
+    <ClCompile Include="GardenStructTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -13,7 +13,6 @@ public:
 
 
 	double GetXSize() const;
-
 	double GetYSize() const;
 
 	bool IsValid();

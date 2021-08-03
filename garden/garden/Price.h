@@ -21,6 +21,7 @@ public:
 	//	return total_price;
 	//}
 
+	//version 2
 	//double Calculate()
 	//{
 	//	auto flowers = m_garden.GetFlowers();
@@ -29,6 +30,18 @@ public:
 	//		0,
 	//		[&](int sum, const Flower& f) { return sum + f.GetPrice(); }
 	//	);
+	//}
+
+	//version 3
+	//auto func_accumulate_price = [&](int sum, const Flower& f)
+	//{
+	//	return sum + f.GetPrice();
+	//};
+
+	//double Calculate()
+	//{
+	//	auto flowers = m_garden.GetFlowers();
+	//	return std::accumulate(flowers.begin(), flowers.end(), 0, func_accumulate_price);
 	//}
 
 private:
