@@ -3,23 +3,20 @@
 #include "GardenMore.h"
 #include <numeric>
 
+
 class Price
 {
 public:
-	Price(const GardenMore& garden):
-		m_garden{ garden }
-	{	
-	}
 
-	//double Calculate()
-	//{
-	//	double total_price = 0.0;
-	//	for (const auto& flower : m_garden.GetFlowers())
-	//	{
-	//		total_price += flower.GetPrice();
-	//	}
-	//	return total_price;
-	//}
+	virtual double Calculate(const std::vector<Flower>& flowers) const
+	{
+		double total_price = 0.0;
+		for (const auto& flower : flowers)
+		{
+			total_price += flower.GetPrice();
+		}
+		return total_price;
+	}
 
 	//version 2
 	//double Calculate()
@@ -44,7 +41,5 @@ public:
 	//	return std::accumulate(flowers.begin(), flowers.end(), 0, func_accumulate_price);
 	//}
 
-private:
-	GardenMore m_garden;
 };
 

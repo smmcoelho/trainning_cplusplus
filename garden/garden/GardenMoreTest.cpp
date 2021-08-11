@@ -1,28 +1,34 @@
 #include "pch.h"
+#include "mock_price.h"
+
 
 #include "GardenDetails.h"
 #include "GardenMore.h"
 #include "Flower.h"
+#include "Price.h"
 
 //GardenDetailsTest
-TEST(TestGardenDetailsNotValid, GardenDetailsTest) {
+TEST(GardenDetailsTest, TestGardenDetailsNotValid) {
   GardenDetails gDetails;
 
   EXPECT_FALSE(gDetails.IsValid());
-
-  //auto r = gDetails.IsValid();
-  //EXPECT_EQ(r, false);
 }
 
-TEST(TestGardenDetailsValid, GardenDetailsTest) {
+TEST(GardenDetailsTest, TestGardenDetailsValid) {
 	GardenDetails gDetails(1.0, 2.0);
 
 	EXPECT_TRUE(gDetails.IsValid());
 }
 
+//bad test -> magic numbers with 6 decimal digits
+TEST(GardenDetailsTest, TestGardenDetailsConvertionToString) {
+	GardenDetails d(1.0, 2.0);
+	EXPECT_EQ(std::string(d), "1.000000:2.000000"); // unnecessary
+}
+
 
 //GardenMoreTest
-TEST(TestGardenDetailsHasFlowersTrue1, GardenMoreTest) {
+TEST(GardenMoreTest, TestGardenDetailsHasFlowersTrue1) {
 	const GardenDetails gDetails;
 	GardenMore garden(gDetails);
 
@@ -31,13 +37,13 @@ TEST(TestGardenDetailsHasFlowersTrue1, GardenMoreTest) {
 	EXPECT_EQ(hasFlowers, false);
 }
 
-TEST(TestGardenDetailsHasFlowersTrue2, GardenMoreTest) {
+TEST(GardenMoreTest, TestGardenDetailsHasFlowersTrue2) {
 	GardenMore garden(GardenDetails(0.0, 0.0));
 
 	EXPECT_FALSE(garden.DoesHaveFlowers());
 }
 
-TEST(TestGardenDetailsHasFlowersFalse1, GardenMoreTest) {
+TEST(GardenMoreTest, TestGardenDetailsHasFlowersFalse1) {
 	GardenDetails gd(1.0, 2.0);
 	ASSERT_TRUE(gd.IsValid()); //should be coverd in GardenDetails
 
@@ -51,14 +57,14 @@ TEST(TestGardenDetailsHasFlowersFalse1, GardenMoreTest) {
 }
 
 //should be testing the same as previous test
-TEST(TestGardenDetailsHasFlowersFalse2, GardenMoreTest) {
+TEST(GardenMoreTest, TestGardenDetailsHasFlowersFalse2) {
 	GardenMore garden(GardenDetails(1.0, 2.0));
 	garden.AddFlower(Flower("rose", "red"));
 
 	ASSERT_TRUE(garden.DoesHaveFlowers());
 }
 
-TEST(TestGardenDetailsAddFlowerThrowException1, GardenMoreTest) {
+TEST(GardenMoreTest, TestGardenDetailsAddFlowerThrowException1) {
 	auto result = false;
 
 	try
@@ -77,7 +83,7 @@ TEST(TestGardenDetailsAddFlowerThrowException1, GardenMoreTest) {
 }
 
 //same/similar as previous test but using ASSERT_THROW
-TEST(TestGardenDetailsAddFlowerThrowException2, GardenMoreTest) {
+TEST(GardenMoreTest, TestGardenDetailsAddFlowerThrowException2) {
 	GardenDetails gDetails;
 	GardenMore garden(gDetails);
 	Flower f("rose", "red");
@@ -86,14 +92,63 @@ TEST(TestGardenDetailsAddFlowerThrowException2, GardenMoreTest) {
 }
 
 
-//TEST(TestGardenDetailsCalcPrice, GardenMoreTest) {
-//	GardenDetails gDetails(1.0, 2.0);
-//	GardenMore garden(gDetails);
-//
-//	garden.AddFlower(Flower("rose", "red"));
-//	garden.AddFlower(Flower("rose", "white"));
-//	
-//	double price = garden.GetPrice();
-//
-//	EXPECT_EQ(price, 1.0);
-//}
+TEST(GardenMoreTest, TestGardenDetailsMinor) {
+	GardenMore g1(GardenDetails(1, 2));
+	GardenMore g2(GardenDetails(2, 2));
+
+	ASSERT_TRUE(g1 < g2);
+}
+
+TEST(GardenMoreTest, TestGardenDetailsMinor2) {
+	GardenMore g1(GardenDetails(1, 2));
+	GardenMore g2(GardenDetails(2, 2));
+
+	ASSERT_FALSE(g2 < g1);
+}
+
+TEST(GardenMoreTest, TestGardenDetailsMajor) {
+	GardenMore g1(GardenDetails(1, 2));
+	GardenMore g2(GardenDetails(2, 2));
+
+	ASSERT_TRUE(g2 > g1);
+}
+
+TEST(GardenMoreTest, TestGardenDetailsMajor2) {
+	GardenMore g1(GardenDetails(1, 2));
+	GardenMore g2(GardenDetails(2, 2));
+
+	ASSERT_FALSE(g1 > g2);
+}
+
+TEST(GardenMoreTest, TestGardenDetailsEqual) {
+	GardenMore g1(GardenDetails(1, 2));
+	GardenMore g2(GardenDetails(2, 1));
+
+	ASSERT_TRUE(g2 == g1);
+}
+
+TEST(GardenMoreTest, TestGardenDetailsDifferent) {
+	GardenMore g1(GardenDetails(1, 2));
+	GardenMore g2(GardenDetails(2, 1));
+
+	ASSERT_FALSE(g2 != g1);
+}
+
+//example for using mock
+TEST(GardenMoreTest, TestGardenDetailsCalcPriceWithMockOfPrice) {
+	GardenDetails gDetails(1.0, 2.0);
+	GardenMore garden(gDetails);
+	garden.AddFlower(Flower("rose", "red"));
+
+	const auto v = garden.GetFlowers();
+
+	//MOCK part
+	const MockPrice mock;
+	EXPECT_CALL(mock, Calculate(v))
+		.WillOnce(::testing::Return(10.0));
+	//end mock
+
+	auto price = garden.GetPrice(mock);
+
+	EXPECT_EQ(price, 10.0);
+}

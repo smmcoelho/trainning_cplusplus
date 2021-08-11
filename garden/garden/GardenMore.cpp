@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "GardenMore.h"
-#include <stdexcept>
-
 #include "Price.h"
 
+
+#include <stdexcept>
+#include <iostream>
+#include <typeinfo>
 
 GardenMore::GardenMore(const GardenDetails& garden)
 {
@@ -29,13 +31,15 @@ bool GardenMore::DoesHaveFlowers()
 }
 
 
-//double GardenMore::GetPrice()
-//{
-//	if (!details.IsValid())
-//	{
-//		throw std::runtime_error("garden size is not valid");
-//	}
-//
-//	Price p(*this);
-//	return p.Calculate();
-//}
+//not implemented by the caller just for didactic purpose -> to mock Price::Calculate method
+double GardenMore::GetPrice(const Price& p)
+{
+	if (!details.IsValid())
+	{
+		throw std::runtime_error("garden size is not valid");
+	}
+
+	auto r = p.Calculate(flowers);
+
+	return r;
+}

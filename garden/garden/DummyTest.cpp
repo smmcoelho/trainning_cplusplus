@@ -2,6 +2,8 @@
 
 #include <numeric>
 
+#include "GardenDetails.h"
+
 auto func_accumulate_price = [&](int sum, int f)
 {
 	return sum + f;
@@ -29,7 +31,19 @@ TEST(DummyTestCase, Test1) {
   EXPECT_TRUE(true); // unnecessary
 }
 
-TEST(DummyTestCase1, Test1) {
+TEST(DummyTestCase, Test2) {
 	EXPECT_EQ(Calc(), 15);
+	EXPECT_TRUE(true); // unnecessary
+}
+
+
+
+
+
+TEST(DummyTestCaseGardenDetails, Test1) {
+	GardenDetails d(1.0, 2.0);
+	//std::cout << d;
+	//printf("%s", std::string(d).c_str());
+
 	EXPECT_TRUE(true); // unnecessary
 }

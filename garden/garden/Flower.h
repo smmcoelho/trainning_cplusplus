@@ -15,13 +15,37 @@ public:
 	std::string GetName() const;
 	std::string GetColor() const;
 
-	//double GetPrice() const;
+	double GetPrice() const;
 
 private:
 	std::string name;
 	std::string color;
 
-	//double price = 1.0;
+	double price = 1.0; //just for sake of the example
 };
+
+
+//change just this operator
+inline bool operator<(const Flower& lhs, const Flower& rhs)
+{
+	return  lhs.GetName() < rhs.GetName() && lhs.GetColor() < rhs.GetColor();
+}
+
+
+inline bool operator==(const Flower& lhs, const Flower& rhs)
+{
+	return !(lhs < rhs) && !(rhs < lhs);
+}
+
+inline bool operator>(const Flower& lhs, const Flower& rhs)
+{
+	return !(lhs < rhs) && !(lhs == rhs);
+}
+
+inline bool operator!=(const Flower& lhs, const Flower& rhs)
+{
+	return !(lhs == rhs);
+}
+
 
 

@@ -16,8 +16,13 @@ struct Flower
 class GardenStruct
 {
 public:
-	GardenStruct(const GardenDetails& details, const Flower& fl);
-	~GardenStruct();
+	GardenStruct(const GardenDetails& details, const Flower& fl) :
+		garden{ details },
+		flower{ fl }
+	{}
+
+	~GardenStruct()
+	{}
 
 	inline Flower GetFlower() const {
 		return flower;

@@ -59,7 +59,7 @@ std::string Flower::GetColor() const
 	return color;
 }
 
-//double Flower::GetPrice() const
-//{
-//	return price;
-//}
+double Flower::GetPrice() const
+{
+	return price;
+}
