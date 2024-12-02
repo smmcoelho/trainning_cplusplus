@@ -36,10 +36,6 @@ TEST(DummyTestCase, Test2) {
 	EXPECT_TRUE(true); // unnecessary
 }
 
-
-
-
-
 TEST(DummyTestCaseGardenDetails, Test1) {
 	GardenDetails d(1.0, 2.0);
 	//std::cout << d;
